@@ -1,10 +1,13 @@
 {
     "name": "Syscraft Clinic Management System",
     "author": "Joe",
-    'version': '1.0',
+    'version': '16.0',
     'category': 'Health',
     'sequence': 1,
-    "website": "localhost:8071/clinic",
+    'desription' : '''Clinic Management module''',
+    'summary' : 'Application for clinic management',
+    'website': 'https://joembatia.github.io/JOEMBATIA.io/',
+    'License': 'LPGL-3',
     "depends": ["mail", "sale", "account"],
     "data": [
 
@@ -61,5 +64,6 @@
     'application': True,
     'auto_install': False,
     'qweb': ['static/src/xml/*.xml'],
+    'images' : ['static/description/clinic.jpg'],
     'web_dashboard': 'SyscraftClinicManagement.203',
 }
