@@ -1,0 +1,111 @@
+<odoo>
+    <record id="action_SysCMS_financials_package" model="ir.actions.act_window">
+        <field name="name">Package</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.package.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_package_form" model="ir.ui.view">
+        <field name="name">package_view_form</field>
+        <field name="model">syscraft.clinic.financials.package.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Package">
+                <header>
+                    <field name="STATE" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="draft,done,confirm"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_patient" type="object" icon="fa-user-circle"
+                                string="Patient Summary"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Package</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <!--<div class="oe_title">
+                            <b>
+                                <field string="REF NO" name="REF_NO" placeholder="REF NO e.g CLC003"/>
+                            </b>
+
+                        </div>-->
+                        <group>
+                            <field name="PATIENT_id"/>
+                            <field name="PHONE"/>
+                            <field name="EMAIL"/>
+                        </group>
+                        <group>
+                            <field name="START_PERIOD"/>
+                            <field name="END_PERIOD"/>
+                            <field name="NETBALANCE"/>
+                            <field name="BELONGSTOCLINIC"/>
+                            <field name="GENDER" widget="radio"/>
+                        </group>
+                        <notebook>
+                            <page name="Order Lines" string="Order Lines">
+                                <field name="order_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="price"/>
+                                        <field name="quantity"/>
+                                        <field name="discount"/>
+                                        <field name="total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Notes" name="Notes">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_package_tree" model="ir.ui.view">
+        <field name="name">package_view_tree</field>
+        <field name="model">syscraft.clinic.financials.package.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="PATIENT_id"/>
+                <field name="GENDER"/>
+                <field name="PHONE"/>
+                <field name="NETBALANCE"/>
+                <field name="BELONGSTOCLINIC"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_package_search" model="ir.ui.view">
+        <field name="name">package_vew_search</field>
+        <field name="model">syscraft.clinic.financials.package.tbl</field>
+        <field name="arch" type="xml">
+            <search string="PATIENT_id">
+                <field name="START_PERIOD"/>
+                <field name="END_PERIOD"/>
+                <field name="BELONGSTOCLINIC"/>
+            </search>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_Package"
+              name="Package"
+              parent="menu_Financials"
+              action="action_SysCMS_financials_package"
+              sequence="10"
+    />
+</odoo>

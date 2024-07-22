@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="quotation_email_template" model="mail.template">
+            <field name="name">Quotation</field>
+            <field name="model_id" ref="SyscraftClinicManagement.model_syscraft_clinic_financials_quotation_tbl"/>
+            <field name="email_from">{{  user.email_formatted }}</field>
+            <field name="email_to">{{ object.PATIENT_id.EMAIL }}</field>
+            <field name="subject">Quotation Details</field>
+            <field name="description">Send to patient after appointment</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #FFFFFF; font-family:Verdana, Arial, sans-serif; color: #454748; width: 100%; border-collapse: separate;">
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr>
+                                    <td valign="top" style="font-size: 13px;">
+
+                                        <div>
+                                            <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                                                Dear
+                                                <t t-if="object.PATIENT_id.NAME">
+                                                    <t t-out="object.PATIENT_id.NAME or ''"/>
+                                                </t>
+                                                <br/>
+                                                <br/>
+                                                Here is your Quotation and the attached invoice
+                                                <br/>
+                                                <br/>
+                                                Do not hesitate to contact us if you have any questions.
+                                                <br/>
+                                                <br/>
+                                                kind regards,
+                                                <br/>
+                                                -------------
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <hr width="100%"
+                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr>
+                                    <td valign="middle" align="left">
+                                        YourCompany
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                        +1 650-123-4567
+                                        |
+                                        info@yourcompany.com
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <br/>
+
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- These are the menus for a specific module in this case the cms module -->
+
+<odoo>
+    <!-- These are the menus for a specific module in this case the cms module -->
+    <menuitem id="menu_cms_root"
+              name="SysCMS"
+              sequence="10"
+    />
+    <menuitem id="menu_Calendar"
+              name="Calendar"
+              parent="menu_cms_root"
+              sequence="10"
+    />
+    <!-- This is the sub-menu for a specific menu in this case the children -->
+    <menuitem id="menu_Patients"
+              name="Patients"
+              parent="menu_cms_root"
+              sequence="11"
+    />
+
+    <!-- This is the sub-menu for a specific sub-menu in this case the classes -->
+    <menuitem id="menu_Investigations"
+              name="Investigations"
+              parent="menu_cms_root"
+              sequence="12"
+    />
+
+    <menuitem id="menu_In_Tray"
+              name="In-Tray"
+              parent="menu_Investigations"
+              sequence="10"
+    />
+    <menuitem id="menu_Investigations_Collect_Sample"
+              name="Collect Sample"
+              parent="menu_Investigations"
+              sequence="10"
+    />
+    <menuitem id="menu_Investigations_Bill_Investigation_Orders"
+              name="Bill Investigations Orders"
+              parent="menu_Investigations"
+              sequence="10"
+    />
+    <menuitem id="menu_Investigations_Record_Result"
+              name="Record Result"
+              parent="menu_Investigations"
+              sequence="10"
+    />
+    <menuitem id="menu_Investigations_Follow_Up"
+              name="Follow Up"
+              parent="menu_Investigations"
+              sequence="10"
+    />
+
+
+    <menuitem id="menu_Pharmacy"
+              name="Pharmacy"
+              parent="menu_cms_root"
+              sequence="13"
+    />
+
+
+    <menuitem id="menu_Financials"
+              name="Financials"
+              parent="menu_cms_root"
+              sequence="14"
+    />
+    <menuitem id="menu_Bill"
+              name="Bill"
+              parent="menu_Financials"
+              sequence="10"
+    />
+    <menuitem id="menu_Custom_Package"
+              name="Custom Package"
+              parent="menu_Financials"
+              sequence="10"
+    />
+    <menuitem id="menu_Package"
+              name="Package"
+              parent="menu_Financials"
+              sequence="10"
+    />
+    <menuitem id="menu_Quotation"
+              name="Quotation"
+              parent="menu_Financials"
+              sequence="10"
+    />
+    <menuitem id="menu_Expense"
+              name="Expense"
+              parent="menu_Financials"
+              sequence="11"
+    />
+    <menuitem id="menu_Refund"
+              name="Refund"
+              parent="menu_Financials"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Inventory"
+              name="Inventory"
+              parent="menu_cms_root"
+              sequence="15"
+    />
+    <menuitem id="menu_Child_Inventory"
+              name="Inventory"
+              parent="menu_Inventory"
+              sequence="10"
+    /><menuitem id="menu_Stock_Order"
+              name="Stock Order"
+              parent="menu_Inventory"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Documents"
+              name="Documents"
+              parent="menu_cms_root"
+              sequence="16"
+    />
+    <menuitem id="menu_Pending_Signing"
+              name="Pending Signing"
+              parent="menu_Documents"
+              sequence="10"
+    />
+    <menuitem id="menu_Print_Queue"
+              name="Print Queue"
+              parent="menu_Documents"
+              sequence="10"
+    />
+    <menuitem id="menu_Patient_Documents"
+              name="Patient Documents"
+              parent="menu_Documents"
+              sequence="10"
+    />
+    <menuitem id="menu_Patient_Paper_Work"
+              name="Patient Paper Work"
+              parent="menu_Documents"
+              sequence="10"
+    />
+    <menuitem id="menu_Library"
+              name="Library"
+              parent="menu_Documents"
+              sequence="10"
+    />
+
+
+    <menuitem id="menu_Tools"
+              name="Tools"
+              parent="menu_cms_root"
+              sequence="17"
+    />
+
+    <menuitem id="menu_Tools_Address_Book"
+              name="Address Book"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Appointment_Template"
+              name="Appointment Template"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Clinical_Groups"
+              name="Clinical Groups"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Clinical_Items_Parameters"
+              name="Clinical Items Parameters"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Dropdowns"
+              name="Dropdowns"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Holiday"
+              name="Holiday"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Immunisations_Schedules"
+              name="Immunisations Schedules"
+              parent="menu_Tools"
+              sequence="10"
+    />
+
+    <menuitem id="menu_Tools_Investigations"
+              name="Investigations"
+              parent="menu_Tools"
+              sequence="10"
+    />
+</odoo>

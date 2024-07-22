@@ -1,0 +1,18 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_SysCMS_holiday" model="ir.actions.act_window">
+        <field name="name">Holiday</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Tools_Holiday"
+              name="Holiday"
+              parent="menu_Tools"
+              action="action_SysCMS_holiday"
+              sequence="10"
+    />
+
+</odoo>

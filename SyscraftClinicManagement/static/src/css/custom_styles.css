@@ -1,0 +1,11 @@
+ <style>
+            .customer-invoice-container {
+            display: flex;
+            justify-content: space-between;
+            }
+
+            .customer-info,
+            .invoice-details {
+            width: 48%; /* Adjust as needed */
+            }
+        </style>

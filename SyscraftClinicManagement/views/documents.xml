@@ -1,0 +1,82 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_SysCMS_documents" model="ir.actions.act_window">
+        <field name="name">Documents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.documents.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+      <record id="view_documents_form" model="ir.ui.view">
+        <field name="name">documents_view_form</field>
+        <field name="model">syscraft.clinic.documents.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Documents">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <b>
+                                <field name="REF_NO" placeholder="DOCUMENT REFERENCE e.g DC09YAYA "/>
+                            </b>
+
+                        </div>
+                        <group>
+                            <field name="DATE"/>
+                            <field name="PHONE"/>
+                            <field name="EMAIL"/>
+                        </group>
+                        <group>
+                            <field name="CONTACT"/>
+                            <field name="CONTACT_EMAIL"/>
+                            <field name="CONTACT_PHONE"/>
+
+                        </group>
+                        <group>
+                            <field name="CREATED_BY"/>
+                            <field name="SIGNED_BY"/>
+                        </group>
+                        <notebook>
+                            <page string="Document Details" name="DOC_DETAILS">
+                                <div>
+                                    <group>
+                                        <field name="DOC_DETAILS"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_documents_tree" model="ir.ui.view">
+        <field name="name">documents_view_tree</field>
+        <field name="model">syscraft.clinic.documents.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="DATE"/>
+                <field name="DOC_DETAILS"/>
+                <field name="PHONE"/>
+                <field name="EMAIL"/>
+                <field name="CONTACT"/>
+                <field name="CONTACT_PHONE"/>
+                <field name="CREATED_BY"/>
+                <field name="SIGNED_BY"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_Documents"
+              name="Documents"
+              parent="menu_cms_root"
+              action="action_SysCMS_documents"
+              sequence="10"
+    />
+
+</odoo>

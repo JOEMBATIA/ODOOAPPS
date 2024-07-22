@@ -1,0 +1,108 @@
+<odoo>
+    <record id="action_SysCMS_financials_refund" model="ir.actions.act_window">
+        <field name="name">Refund</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.refund.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_refund_form" model="ir.ui.view">
+        <field name="name">refund_view_form</field>
+        <field name="model">syscraft.clinic.financials.refund.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Refund">
+                <header>
+                    <field name="STATE" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="draft,done,confirm"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Refund</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <!--<div class="oe_title">
+                            <b>
+                                <field string="REF NO" name="REF_NO" placeholder="REF NO e.g CLC003"/>
+                            </b>
+
+                        </div>-->
+                        <group>
+
+                        </group>
+                        <group>
+                            <field name="PATIENT_id"/>
+                            <field name="GENDER" widget="radio"/>
+                            <field name="category_id"/>
+                            <field name="AGE"/>
+                            <field name="PHONE"/>
+                            <field name="EMAIL"/>
+                        </group>
+                        <group>
+                            <field name="NETBALANCE"/>
+                            <field name="BELONGSTOCLINIC"/>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Bill Items">
+                                <div>
+                                    <group>
+                                        <field name="AMOUNT" String="Refund Amount"/>
+                                        <field name="PAYMENT_MODE" String="Payment Mode"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_refund_tree" model="ir.ui.view">
+        <field name="name">refund_view_tree</field>
+        <field name="model">syscraft.clinic.financials.refund.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="PATIENT_id"/>
+                <field name="GENDER"/>
+                <field name="PHONE"/>
+                <field name="NETBALANCE"/>
+                <field name="BELONGSTOCLINIC"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_refund_search" model="ir.ui.view">
+        <field name="name">refund_view_search</field>
+        <field name="model">syscraft.clinic.financials.refund.tbl</field>
+        <field name="arch" type="xml">
+            <search string="PATIENT_id">
+                <field name="START_PERIOD"/>
+                <field name="END_PERIOD"/>
+                <field name="BELONGSTOCLINIC"/>
+            </search>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_Refund"
+              name="Refund"
+              parent="menu_Financials"
+              action="action_SysCMS_financials_refund"
+              sequence="10"
+    />
+
+</odoo>

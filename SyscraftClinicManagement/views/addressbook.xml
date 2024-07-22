@@ -1,0 +1,116 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_SysCMS_address_book" model="ir.actions.act_window">
+        <field name="name">Address Book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tools.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_address-book_form" model="ir.ui.view">
+        <field name="name">address-book_view_form</field>
+        <field name="model">syscraft.clinic.tools.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Address Book">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Address Book</b>
+                        </h1>
+                    </div>
+                    <div>
+                        <field name="IMAGE" widget="image" class="oe_avatar"/>
+                    </div>
+                    <group>
+                        <div class="oe_title">
+                            <b>
+                                <field name="COMPANY_ID" placeholder="COMPANY ID e.g CP0789"/>
+                            </b>
+                        </div>
+                        <group>
+                            <field name="NAME"/>
+                            <field name="CATEGORIES"/>
+                            <field name="FINANCIAL_SUMMARY"/>
+                        </group>
+                        <group>
+                            <field name="MOBILE"/>
+                            <field name="PHONE1"/>
+                            <field name="PHONE2"/>
+                        </group>
+                        <group>
+                            <field name="SKYPE"/>
+                            <field name="FAX"/>
+                            <field name="EMAIL"/>
+                            <field name="WEBSITE"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contact Details">
+                            <div>
+                                <group>
+                                    <field name="CONTACT_PERSON"/>
+                                    <field name="CP_PHONE"/>
+                                </group>
+                            </div>
+                        </page>
+                        <page string="Address Details">
+                            <div>
+                                <group>
+                                    <field name="ADDRESS1"/>
+                                    <field name="ADDRESS2"/>
+                                    <field name="ADDRESS3"/>
+                                  </group>
+                                 <group>
+                                     <field name="CITY"/>
+                                    <field name="POST_CODE"/>
+                                    <field name="STATE"/>
+                                    <field name="COUNTRY"/>
+                                 </group>
+                            </div>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_address-book_tree" model="ir.ui.view">
+        <field name="name">address-book_view_tree</field>
+        <field name="model">syscraft.clinic.tools.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="NAME"/>
+                <field name="MOBILE"/>
+                <field name="EMAIL"/>
+                <field name="FINANCIAL_SUMMARY"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_address-book_search" model="ir.ui.view">
+        <field name="name">address-book_view_search</field>
+        <field name="model">syscraft.clinic.tools.tbl</field>
+        <field name="arch" type="xml">
+            <search string="Address book">
+                <field name="NAME"/>
+                <field name="CATEGORIES"/>
+            </search>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_Tools_Address_Book"
+              name="Address Book"
+              parent="menu_Tools"
+              action="action_SysCMS_address_book"
+              sequence="10"
+    />
+
+</odoo>

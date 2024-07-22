@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These are the menus for a specific module in this case the cms module -->
+
+<odoo>
+    <record id="action_SyscraftCMS_calendar" model="ir.actions.act_window">
+        <field name="name">Appointment Calendar</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tbl</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+    <record id="view_calendar" model="ir.ui.view">
+        <field name="name">Appointment Calendar</field>
+        <field name="model">syscraft.clinic.tbl</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <calendar date_start="NEXTAPPT" string="Appointment Calendar"
+                      color="CLINIC_NAME" event_limit="5"
+                      mode="month">
+                <field name="NAME"/>
+                <field name="REF_NO"/>
+                <field name="AVANE"/>
+                <field name="PHYSICIAN" invisible="0" filters="1"/>
+                <field name="RESOURCE"/>
+                <field name="CLINIC_NAME" invisible="0" filters="1"/>
+                <field name="CATEGORY_NAME"/>
+            </calendar>
+        </field>
+    </record>
+
+    <menuitem id="menu_Calendar"
+              name="Calendar"
+              parent="menu_cms_root"
+              action="action_SyscraftCMS_calendar"
+              sequence="10"
+    />
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These are the menus for a specific module in this case the cms module -->
+
+<odoo>
+
+    <data noupdate="1">
+        <record id="SyscraftClinicManagement.home_menu_item" model="ir.ui.menu">
+            <field name="name">Clinic Management System</field>
+            <field name="action" ref="SyscraftClinicManagement.203"/>
+            <field name="sequence" eval="1"/>
+            <field name="web_icon">fa-home</field>
+        </record>
+    </data>
+
+</odoo>

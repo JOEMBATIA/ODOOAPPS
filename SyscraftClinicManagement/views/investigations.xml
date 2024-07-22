@@ -1,0 +1,18 @@
+<!-- These are the menus for a specific module in this case the cms module -->
+
+<odoo>
+    <record id="action_SysCMS_Investigations" model="ir.actions.act_window">
+        <field name="name">Investigations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.investigations.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Investigations"
+              name="Investigations"
+              parent="menu_cms_root"
+              action="action_SysCMS_Investigations"
+              sequence="10"
+    />
+
+</odoo>

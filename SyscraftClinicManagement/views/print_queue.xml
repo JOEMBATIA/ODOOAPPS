@@ -1,0 +1,28 @@
+<odoo>
+    <record id="action_sysCMS_print_queue" model="ir.actions.act_window">
+        <field name="name">Print Queue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.print.queue.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_print_queue_tree" model="ir.ui.view">
+        <field name="name">Print Queue Tree</field>
+        <field name="model">syscraft.print.queue.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="doc_details"/>
+                <field name="patient_details"/>
+                <field name="created_and_clinic"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_Print_Queue"
+              name="Print Queue"
+              parent="menu_Documents"
+              action="action_sysCMS_print_queue"
+              sequence="10"
+    />
+</odoo>

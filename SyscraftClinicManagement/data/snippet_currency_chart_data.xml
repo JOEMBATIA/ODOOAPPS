@@ -1,0 +1,11 @@
+<data noupdate="1">
+    <record id="snippet_currency_chart_options" model="ir.ui.view">
+        <field name="name">your_module.snippet_currency_chart_options</field>
+        <field name="model">ir.ui.view</field>
+        <field name="arch" type="xml">
+            <data>
+                <var name="options">{'title': 'Currency Chart'}</var>
+            </data>
+        </field>
+    </record>
+</data>

@@ -1,0 +1,70 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_SysCMS_clinical_item_parameters" model="ir.actions.act_window">
+        <field name="name">Clinical item parameters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinical.parameters.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="clinical_parameters_view_form" model="ir.ui.view">
+        <field name="name">clinical_parameters_form</field>
+        <field name="model">syscraft.clinical.parameters.tbl</field>
+        <field name="arch" type="xml">
+            <form string="Clinical Parameters">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Item Parameters</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <div class="oe_title" name="REF_NO" string="Reference Number">
+
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="section"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="uom_id"/>
+                            <label for="sex"
+                                   string="
+                                    A casesheet is made up of clinical groups. Clinical Groups are made of up Clinical Items. When you start to record a visit,
+                                     you will open a casesheet. Clinicea will then compare each of the clinical items within each clinical group to check if the sex of the
+                                     Patient matches that of the item. If they do not match, the item is removed from the casesheet. It ensures your casesheets are relevant to the Patient,
+                                    they remain short, and Patient questionnaire if sent out remotely to Patient(s) for filling – remain clinically correct."
+                            />
+                            <field name="sex"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinical_parametersp_view_tree" model="ir.ui.view">
+        <field name="name">clinical_parameters_tree</field>
+        <field name="model">syscraft.clinical.parameters.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="section"/>
+                <field name="type"/>
+            </tree>
+
+        </field>
+
+    </record>
+
+    <menuitem id="menu_Tools_Clinical_Items_Parameters"
+              name="Clinical Items Parameters"
+              parent="menu_Tools"
+              action="action_SysCMS_clinical_item_parameters"
+              sequence="10"
+    />
+
+</odoo>

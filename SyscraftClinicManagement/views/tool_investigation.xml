@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_SysCMS_investigation_tool" model="ir.actions.act_window">
+        <field name="name">Investigation tool</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.investigation.tool.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="investigation_tool_view_tree" model="ir.ui.view">
+        <field name="name">investigation_tool_tree</field>
+        <field name="model">syscraft.investigation.tool.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="service"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="investigation_tool_form" model="ir.ui.view">
+        <field name="name">investigation_tool_form</field>
+        <field name="model">syscraft.investigation.tool.tbl</field>
+        <field name="arch" type="xml">
+            <form string="Investigation Details">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Investigation Details</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <div class="oe_title" name="REF_NO" string="Reference Number">
+                        </div>
+                        <group>
+                            <field name="cost_price"/>
+                            <field name="price"/>
+                            <field name="instructions"/>
+                            <field name="sex"/>
+                        </group>
+                        <group>
+                            <field name="attachment"/>
+                            <field name="specimen"/>
+                            <field name="specimen_storage"/>
+                            <field name="method"/>
+                        </group>
+                        <notebook>
+                            <page name="Item Line" string="Item Lines">
+                                <field name="item_parameter_line_ids" widget="section_and_note_one2many"
+                                       mode="tree,kanban">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="unit"/>
+                                        <field name="type"/>
+                                        <field name="range"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="Clinical Group" string="Clinical Group">
+                                <field name="clinical_group"/>
+                            </page>
+                            <page name="Result Text" string="Result Text">
+                                <field name="result_text"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_Tools_Investigations"
+              name="Investigations"
+              parent="menu_Tools"
+              action="action_SysCMS_investigation_tool"
+              sequence="10"
+    />
+</odoo>

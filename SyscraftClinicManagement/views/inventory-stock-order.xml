@@ -1,0 +1,97 @@
+<odoo>
+    <record id="action_SysCMS_inventory_stock_order" model="ir.actions.act_window">
+        <field name="name">Stock Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.inventory.stock.order.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_stock_order_tree" model="ir.ui.view">
+        <field name="name">stock_order_view_tree</field>
+        <field name="model">syscraft.inventory.stock.order.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_number_date"/>
+                <field name="order_status" widget="badge"/>
+                <field name="order_ref_no"/>
+                <field name="order_supplied_by"/>
+                <field name="order_ordered_by"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_stock_order_form" model="ir.ui.view">
+        <field name="name">stock_order_view-form</field>
+        <field name="model">syscraft.inventory.stock.order.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Stock Order">
+                <header>
+                    <header name="delete_lines" tyep="object" string="Delete" class="oe_highlight"/>
+
+                    <button name="action_open_stock_order" type="object" icon="fa-file-text "
+                            string="View Stock Order"/>
+                    <button name="action_open_stock_order" type="object" icon="fa-file-text "
+                            string="View Received Order"/>
+                    <button name="action_open_expense_voucher" type="object" icon="fa-gift"
+                            string="View Expense Voucher"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Order Details</b>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <div class="oe_title">
+                            <b>
+                                <field name="ref_no" placeholder="ORDER REF NO "/>
+                            </b>
+
+                        </div>
+                        <group>
+                            <field name="order_supplied_by" string="Sender "/>
+                            <field name="order_ordered_by" sting="Receiver "/>
+                        </group>
+                        <group>
+                            <field name="transaction_date"/>
+                            <field name="transaction_due_date"/>
+                            <field name="comments"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Voucher Items">
+                            <field name="voucher_line_ids" widget="section_and_note_one2many"
+                                   mode="tree,kanban">
+                                <tree editable="bottom">
+                                    <field name="item_id" string="Item "/>
+                                    <field name="pk" string="#PK "/>
+                                    <field name="free_pk" string="#Free PK "/>
+                                    <field name="pk_buying_price" string="PK Buying Price(incl. tax) "/>
+                                    <field name="discount" string="Discount "/>
+                                    <field name="pk_selling_price" string="PK Selling price "/>
+                                    <field name="taxes"/>
+                                    <field name="total_price" string="Item Total "/>
+                                    <!--                                    <field name="quantity"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_Stock_Order"
+              name="Stock Order"
+              parent="menu_Inventory"
+              action="action_SysCMS_inventory_stock_order"
+              sequence="10"
+    />
+
+</odoo>
