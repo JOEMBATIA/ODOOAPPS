@@ -41,7 +41,7 @@ class Patient(models.Model):
     CATEGORY_NAME = fields.Many2many('syscraft.category.tbl', String="Service ")
     NOTES = fields.Char(String="Notes", tracking=True)
     EMAIL = fields.Text(String="Email address ", tracking=True)
-    PHYSICIAN = fields.Many2one('syscraft.physicians.tbl', string="Physician/Practinioner ")
+    PHYSICIAN = fields.Many2one('syscraft.physicians.tbl', string="Physician/Practitioner ")
     IsChild = fields.Boolean(String="Is Child", tracking=True)
     AGE = fields.Integer(String="Age", compute="_compute_age", store=True)
     RESOURCE = fields.Selection([('amethyst', 'Amethyst'), ('emarald', 'Emarald'), ('emarald', 'Emarald'), ('haircut', 'Haircut'), ('jade', 'Jade'),

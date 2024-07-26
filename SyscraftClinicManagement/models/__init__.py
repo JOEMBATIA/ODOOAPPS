@@ -3,5 +3,3 @@ from . import investigationsInTray, InvestigationsCollectSample, InvestigationsR
 from . import AppointmentTemplate, PrintQueue, PaperWork, Library
 from . import ClinicalGroups, ClinicalItemParameters
 from . import ImmunizationSchedule, PatientDocuments, PendingSigning
-
-from . import btc

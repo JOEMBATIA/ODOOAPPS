@@ -1,7 +1,0 @@
-<template id="snippet_currency_chart_template" name="Currency Chart Snippet">
-    <div class="oe_structure oe_empty">
-        <div class="oe_structure oe_structure_full" style="max-width: 100%;">
-            <canvas id="currencyChart"></canvas>
-        </div>
-    </div>
-</template>
