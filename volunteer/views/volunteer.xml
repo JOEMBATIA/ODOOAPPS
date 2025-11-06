@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_VMS" model="ir.actions.act_window">
+        <field name="name">Volunteers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">volunteer.volunteer</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Oops! No Volunteers found. Excited to create one.
+            </p>
+            <span>Once you add volunteers they will appear here</span>
+
+        </field>
+
+    </record>
+
+    <record id="view_volunteer_form" model="ir.ui.view">
+        <field name="name">volunteer_view_form</field>
+        <field name="model">volunteer.volunteer</field>
+        <field name="arch" type="xml">
+            <form string="Volunteer Form">
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable' : '0'}"
+                           statusbar_visible="to be approved,rejected,approved" readonly="1"/>
+                    <!-- Buttons for admin -->
+                    <button name="action_approve" type="object" string="Approve"
+                            class="oe_highlight btn btn-success" groups="base.group_system"
+                            visible="status != 'approved'"/>
+                    <button name="%(action_volunteer_rejection_wizard)d" type="action" string="Reject"
+                            class="oe_highlight btn btn-danger" groups="base.group_system"
+                            visible="status != 'rejected'"/>
+                    <button name="action_send_mail" type="object" string="Send Mail"
+                            class="oe_highlight" groups="base.group_system"/>
+                    <button name="action_send_certification_mail" type="object" string="Send Completion Certificate"
+                            class="oe_highlight btn btn-success" groups="base.group_system"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                        <h2>
+                            <field name="name" placeholder="Volunteer Name"/>
+                        </h2>
+                    </div>
+                    <div>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                    </div>
+                    <group>
+                        <group string="Personal Information">
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="date_of_birth"/>
+                            <field name="gender"/>
+                            <field name="identification"/>
+                            <field name="age"/>
+                        </group>
+
+                        <group string="Contact Information">
+                            <field name="address"/>
+                            <field name="country_id"/>
+                            <field name="state_id"/>
+                            <field name="emergency_name"/>
+                            <field name="emergency_phone"/>
+                            <field name="emergency_details"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Volunteering Details">
+                            <field name="mode"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="payment_status"/>
+                        </group>
+                        <group string="Application Status">
+                            <field name="rejection_reason" visibility="visible[status == 'rejected']"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal Details">
+                            <group>
+                                <group>
+                                    <field name="message" placeholder="Why do you want to volunteer?"/>
+                                    <field name="hobbies" placeholder="What are your hobbies?"/>
+                                </group>
+                                <group>
+                                    <field name="area_of_interest" placeholder="Areas of interest"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_volunteer_tree" model="ir.ui.view">
+        <field name="name">volunteer.list</field>
+        <field name="model">volunteer.volunteer</field>
+        <field name="arch" type="xml">
+            <list string="Volunteers">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="gender"/>
+                <field name="date_of_birth" optional="show"/>
+                <field name="country_id" optional="show"/>
+                <field name="status"
+                       decoration-warning="status == 'to be approved'"
+                       decoration-success="status == 'approved'"
+                       decoration-danger="status == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_volunteer_kanban" model="ir.ui.view">
+        <field name="name">volunteer.kanban</field>
+        <field name="model">volunteer.volunteer</field>
+        <field name="arch" type="xml">
+            <kanban string="Volunteer">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="status"/>
+                <field name="payment_status"/>
+                <field name="project_ids"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_card">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_image">
+                                    <field name="image" widget="image" class="oe_avatar"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <div>
+                                        <span>
+                                            <field name="email"/>
+                                        </span>
+                                        |
+                                        <span>
+                                            <field name="phone"/>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <field name="status" widget="badge"
+                                               decoration-warning="status == 'to be approved'"
+                                               decoration-success="status == 'approved'"
+                                               decoration-danger="status == 'rejected'"
+                                               string="Application Status"/>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <field name="project_ids" widget="many2many_tags" string="Projects"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="action_volunteer_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_volunteer_kanban"/>
+        <field name="act_window_id" ref="action_VMS"/>
+    </record>
+
+
+    <menuitem id="menu_Volunteers"
+              name="Volunteers"
+              parent="menu_vms_root"
+              action="action_VMS"
+              sequence="10"
+    />
+
+</odoo>

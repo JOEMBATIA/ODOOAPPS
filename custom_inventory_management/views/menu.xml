@@ -1,0 +1,23 @@
+<odoo>
+  <data>
+    <record model="ir.actions.act_window" id="action_my_model">
+      <field name="name">custom_inventory_module</field>
+      <field name="res_model">my_module.my_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_my_module_root"
+        name="custom_inventory_module"
+        sequence="10"
+        web_icon="custom_inventory_module,static/description/icon.png"
+    />
+
+    <menuitem
+        id="menu_custom_inventory_module_list"
+        name="My Model List"
+        parent="menu_custom_inventory_module_root"
+        action="action_my_model"
+    />
+  </data>
+</odoo>

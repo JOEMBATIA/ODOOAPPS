@@ -1,0 +1,159 @@
+// Color variables
+$primary-light: #04DEF1;  // Light turquoise
+$primary-dark: #027D88;   // Dark teal
+$gradient-light: #e8f9fb; // Very light version of the theme
+$gradient-dark: #04DEF1;  // Using the light turquoise for gradient
+$text-dark: #025159;      // Darker shade for text
+$hover-dark: #026974;     // Slightly darker than primary-dark for hover states
+
+// Main container styling
+.container-field {
+    background: linear-gradient(135deg, $gradient-light 0%, $gradient-dark 100%);
+    padding: 2rem 0;
+    // Add this to fix scrolling
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+// Fix for the body and html to allow scrolling
+html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto !important;
+    position: relative;
+}
+
+// Card styling
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    // Prevent card from expanding beyond viewport
+    max-height: none;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(4, 222, 241, 0.2);
+    }
+}
+
+.card-header {
+    background-color: $primary-dark;
+    color: white;
+    padding: 1.5rem;
+    border-bottom: none;
+
+    h2 {
+        margin: 0;
+        font-weight: 600;
+    }
+}
+
+// Form styling
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+        border-color: $primary-light;
+        box-shadow: 0 0 0 0.2rem rgba(4, 222, 241, 0.25);
+    }
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: $text-dark;
+}
+
+// Button styling
+.btn-primary {
+    background-color: $primary-dark;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $hover-dark;
+        transform: translateY(-2px);
+    }
+}
+
+// Loading state for button
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 0.6s linear infinite;
+        margin-left: 0.5rem;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+// Additional theme elements
+.alert-success {
+    background-color: rgba(4, 222, 241, 0.15);
+    border-color: $primary-light;
+    color: $primary-dark;
+}
+
+// Add a subtle border to the bottom of form groups for better separation
+.form-group {
+    border-bottom: 1px solid rgba(2, 125, 136, 0.1);
+    padding-bottom: 1.2rem;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+// Style select dropdowns to match the theme
+select.form-control {
+    background-image: linear-gradient(45deg, transparent 50%, $primary-dark 50%),
+                      linear-gradient(135deg, $primary-dark 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+                         calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+// Make textareas more visually appealing
+textarea.form-control {
+    min-height: 100px;
+    border: 1px solid rgba(2, 125, 136, 0.2);
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .card-header {
+        padding: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}

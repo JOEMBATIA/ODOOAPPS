@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="volunteer_project_view_form" model="ir.ui.view">
+        <field name="name">project.project_view_form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="country_id"/>
+                <field name="state_id" options="{'no_create': True}" domain="[('country_id', '=', country_id)]"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="image"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

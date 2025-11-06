@@ -1,0 +1,220 @@
+<odoo>
+    <record id="menu-volunteer-form" model="website.menu">
+        <field name="name">Volunteer</field>
+        <field name="url">/volunteer-form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+
+    <template id="create-volunteer" name="Volunteer">
+        <t t-call="website.layout">
+            <head>
+                <link rel="stylesheet" type="text/css" href="/VolunteerManagement/static/src/scss/volunteer_form.scss"/>
+            </head>
+            <section class="oe-structure container-field my-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card shadow-sm">
+                                <div class="card-header text-center">
+                                    <h2>Volunteer Registration</h2>
+                                </div>
+                                <div class="card-body">
+                                    <form t-attf-action="/volunteer/register" method="post" class="p-3">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="form-group mb-3">
+                                            <label for="identification">Passport Number/ Identification Number</label>
+                                            <input type="text"
+                                                   id="identification"
+                                                   name="identification"
+                                                   class="form-control"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="name">Full Name</label>
+                                            <input type="text"
+                                                   id="name"
+                                                   name="name"
+                                                   class="form-control"
+                                                   placeholder="e.g Jane Doe"
+                                                   required="required"
+                                                   t-att-value="volunteer_name"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="date_of_birth">Date of Birth</label>
+                                            <input type="date"
+                                                   id="date_of_birth"
+                                                   name="date_of_birth"
+                                                   class="form-control"
+                                                   required="required"
+                                                   t-att-value="date_of_birth"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="email">Email Address</label>
+                                            <input type="email"
+                                                   id="email"
+                                                   name="email"
+                                                   class="form-control"
+                                                   placeholder="e.g john.doe@example.com"
+                                                   required="required"
+                                                   t-att-value="volunteer_email"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="phone">Phone Number</label>
+                                            <input type="tel"
+                                                   id="phone"
+                                                   name="phone"
+                                                   class="form-control"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="gender">Gender</label>
+                                            <select id="gender"
+                                                    name="gender"
+                                                    class="form-control"
+                                                    required="required">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="address">Address</label>
+                                            <input type="text" id="address" name="address" class="form-control"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="country_id">Country</label>
+                                            <select id="country_id" name="country_id" class="form-control">
+                                                <t t-foreach="request.env['res.country'].search([])" t-as="country">
+                                                    <option t-att-value="country.id">
+                                                        <t t-esc="country.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="project_ids">Program</label>
+                                            <select id="project_ids" name="project_ids" class="form-control">
+                                                <t t-foreach="request.env['project.project'].sudo().search([])"
+                                                   t-as="project">
+                                                    <option t-att-value="project.id">
+                                                        <t t-esc="project.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="mode">How will you volunteer</label>
+                                            <select id="mode" name="mode" class="form-control" required="required">
+                                                <option value="onsite">Onsite</option>
+                                                <option value="remote">Remote/Online</option>
+                                                <option value="hybrid">Hybrid</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="start_date">Volunteering Start Date</label>
+                                            <input type="date"
+                                                   id="start_date"
+                                                   name="start_date"
+                                                   class="form-control"
+                                                   required="required"
+                                                   t-att-value="start_date"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="end_date">Volunteering End Date</label>
+                                            <input type="date"
+                                                   id="end_date"
+                                                   name="end_date"
+                                                   class="form-control"
+                                                   required="required"
+                                                   t-att-value="end_date"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="emergency_name">Emergency Contact Name</label>
+                                            <input id="emergency_name"
+                                                   name="emergency_name"
+                                                   class="form-control"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="emergency_relationship">Emergency Contact Relationship</label>
+                                            <input id="emergency_relationship"
+                                                   name="emergency_relationship"
+                                                   class="form-control"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="emergency_phone">Emergency Contact Phone Number</label>
+                                            <input type="tel"
+                                                   id="emergency_phone"
+                                                   name="emergency_phone"
+                                                   class="form-control"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="hobbies">What are your Hobbies?</label>
+                                            <textarea id="hobbies"
+                                                      name="hobbies"
+                                                      placeholder="E.g Swimming, Cooking ..."
+                                                      class="form-control"
+                                                      rows="4"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="area_of_interest">Areas of interest</label>
+                                            <textarea id="area_of_interest"
+                                                      name="area_of_interest"
+                                                      placeholder="E.g Medical, Teaching, Childcare ..."
+                                                      class="form-control"
+                                                      rows="4"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="emergency_details">Do you have any condition/allergies?</label>
+                                            <textarea id="emergency_details"
+                                                      placeholder="If none please type None..."
+                                                      name="emergency_details" class="form-control"
+                                                      rows="4"/>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="message">Why do you want to volunteer?</label>
+                                            <textarea id="message" name="message" class="form-control"
+                                                      rows="4"/>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-lg">Volunteer Today
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script type="text/javascript" src="/VolunteerManagement/static/src/js/web-form-validations.js"/>
+        </t>
+    </template>
+
+    <record id="volunteer_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/volunteer-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">VolunteerManagement.volunteer_thanks</field>
+        <field name="arch" type="xml">
+            <t name="thanks" t-name="VolunteerManagement.volunteer_thanks">
+                <t t-call="website.layout">
+                    <div class="container my-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center alert alert-success" role="status">
+                                <h2>Thank You for Registering as a Volunteer!</h2>
+                                <p>We appreciate your interest in volunteering. We will get in touch with you soon.</p>
+                                <a href="/" class="btn btn-primary">Go to Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

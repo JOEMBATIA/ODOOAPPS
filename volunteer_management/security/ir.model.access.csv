@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+volunteer_management.access_volunteer_volunteer_admin,access_volunteer_volunteer_admin,volunteer_management.model_volunteer_volunteer,base.group_user,1,1,1,1
+volunteer_management.access_volunteer_rejection_wizard,access_volunteer_rejection_wizard,volunteer_management.model_volunteer_rejection_wizard,base.group_user,1,1,1,1
+volunteer_management.access_volunteer_import_wizard,access_volunteer_import_wizard,volunteer_management.model_volunteer_import_wizard,base.group_user,1,1,1,1
+

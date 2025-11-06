@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_vms_root"
+              name="Volunteer Management System"
+              sequence="-10"
+    />
+    <menuitem id="menu_Volunteers"
+              name="Volunteers"
+              parent="menu_vms_root"
+              sequence="20"
+    />
+</odoo>

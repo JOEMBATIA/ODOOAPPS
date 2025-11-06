@@ -1,0 +1,10 @@
+<templates>
+    <t t-name="volunteer_management.column_selector">
+        <div class="oe_column_selector" style="display: none;">
+            <label><input type="checkbox" data-column="name" checked="checked"/> Name</label><br/>
+            <label><input type="checkbox" data-column="email" checked="checked"/> Email</label><br/>
+            <label><input type="checkbox" data-column="status" checked="checked"/> Status</label><br/>
+            <!-- Add more checkboxes for other columns as needed -->
+        </div>
+    </t>
+</templates>

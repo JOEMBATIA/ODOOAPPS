@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_quality_check_form_custom" model="ir.ui.view">
+        <field name="name">quality.check.form.custom</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Find the note field and add our custom fields after it -->
+            <xpath expr="//field[@name='note']" position="after">
+                <field name="custom_quality_notes"/>
+                <field name="inspection_date"/>
+                <field name="inspector_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

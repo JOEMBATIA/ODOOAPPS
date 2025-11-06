@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_min_stock" model="mail.template">
+        <field name="name">Minimum Stock Alert</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="subject">Minimum Stock Level Reached for {{ object.product_id.name }}</field>
+        <field name="email_from">{{ user.email }}</field>
+        <field name="email_to">{{ user.email }}</field>
+        <field name="body_html"><![CDATA[
+            <p>Hello,</p>
+            <p>The stock level for <strong>{{ ctx.get('product_name') }}</strong> has reached the minimum threshold.</p>
+            <p>Current Stock: <strong>{{ ctx.get('current_stock') }}</strong></p>
+            <p>Minimum Required: <strong>{{ ctx.get('min_stock_level') }}</strong></p>
+            <p>Please take necessary action to replenish the stock.</p>
+            <p>Thank you.</p>
+        ]]></field>
+    </record>
+</odoo>

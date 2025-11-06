@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Approve Selected -->
+    <record id="action_approve_selected" model="ir.actions.server">
+        <field name="name">Approve Selected</field>
+        <field name="model_id" ref="model_volunteer_volunteer"/>
+        <field name="binding_model_id" ref="model_volunteer_volunteer"/>
+        <field name="state">code</field>
+        <field name="code">records.multiple_action_approve()</field>
+        <field name="binding_type">action</field>
+    </record>
+
+    <!-- Reject Selected -->
+    <record id="action_reject_selected" model="ir.actions.server">
+        <field name="name">Reject Selected</field>
+        <field name="model_id" ref="model_volunteer_volunteer"/>
+        <field name="binding_model_id" ref="model_volunteer_volunteer"/>
+        <field name="state">code</field>
+        <field name="code">records.multiple_action_reject()</field>
+        <field name="binding_type">action</field>
+    </record>
+</odoo>
