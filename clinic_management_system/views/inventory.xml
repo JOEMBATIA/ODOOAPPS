@@ -1,0 +1,93 @@
+<odoo>
+    <record id="action_CMS_inventory" model="ir.actions.act_window">
+        <field name="name">Inventory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.inventory.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_inventory_tree" model="ir.ui.view">
+        <field name="name">inventory_view_tree</field>
+        <field name="model">syscraft.inventory.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="SKU"/>
+                <field name="Manufacturer_id"/>
+                <field name="status" widget="badge"
+                       decoration-success="status == 'in-stock'"
+                       decoration-danger="status == 'outof-stock'"
+                />
+                <field name="quantity"/>
+                <field name="total_price"/>
+                <field name="order_supplied_by" string="Available Clinic "/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_inventory_form" model="ir.ui.view">
+        <field name="name">inventory_view-form</field>
+        <field name="model">syscraft.inventory.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Inventory">
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="in-stock,outof-stock"/>
+                </header>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <span>
+                                    <b>PRODUCT</b>
+                                </span>
+                                <span>
+                                    <b>DETAILS</b>
+                                </span>
+                            </h1>
+                        </div>
+                    </group>
+
+                    <group>
+                        <div class="oe_title">
+                            <b>
+                                <field name="ref_no" placeholder="PRODUCT REF NO "/>
+                            </b>
+
+                        </div>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="pricce"/>
+                            <field name="taxes"/>
+                            <field name="total_price"/>
+                            <field name="quantity"/>
+
+                            <field name="Manufacturer_id"/>
+                            <field name="SKU"/>
+                            <field name="category"/>
+                            <field name="order_supplied_by" string="Available Clinic "/>
+                            <field name="status" widget="badge"
+                                   decoration-success="status == 'in-stock'"
+                                   decoration-danger="status == 'outof-stock'"
+                            />
+
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_Child_Inventory"
+              name="Inventory"
+              parent="menu_Inventory"
+              action="action_CMS_inventory"
+              sequence="10"
+    />
+
+</odoo>

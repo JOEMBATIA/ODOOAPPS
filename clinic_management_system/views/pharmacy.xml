@@ -1,0 +1,128 @@
+<odoo>
+    <record id="action_CMS_pharmacy" model="ir.actions.act_window">
+        <field name="name">Pharmacy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.pharmacy.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_pharmacy_form" model="ir.ui.view">
+        <field name="name">pharmacy_view_form</field>
+        <field name="model">syscraft.clinic.pharmacy.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Pharmacy">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="draft,done"/>
+                    <button name="action_send_email" type="object" string="Send Email"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_patient" type="object" icon="fa-user-circle"
+                                string="Patient Summary"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Pharmacy</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <div class="oe_title" name="REF_NO" string="Reference Number">
+
+                        </div>
+                        <group>
+                            <field name="patient_name_id"/>
+                            <field name="PHYSICIAN_id"/>
+                            <field name="location"/>
+                            <field name="PAYMENT_MODE"/>
+                        </group>
+                        <group>
+                            <field name="PRESC_START"/>
+                            <field name="PRESC_END"/>
+                            <field name="STATUS_SYS" string="Prescription Status " decoration-success="state == 'done'"
+                                   decoration-danger="state == 'draft'"
+                                   widget="badge"/>
+                        </group>
+                        <notebook>
+                            <page string="Bill Items">
+                                <field name="pharmacy_item_ids" widget="section_and_note_one2many" mode="tree,kanban">
+                                    <tree editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="price"/>
+                                        <field name="quantity"/>
+                                        <field name="discount"/>
+                                        <field name="total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Patient Details" name="PATIENT_DETAILS">
+                                <div>
+                                    <group>
+                                        <field name="GENDER" widget="radio"/>
+                                        <field name="AGE"/>
+                                        <field name="PATIENT_EMAIL"/>
+                                        <field name="PATIENT_PHONE"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Contact Details" name="CONTACT_DETAILS">
+                                <div>
+                                    <group>
+                                        <field name="CONTACT_NAME"/>
+                                        <field name="CONTACT_PHONE"/>
+                                        <field name="CONTACT_EMAIL"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                        <group col="6" class="mt-2 mt-md-0">
+                            <group colspan="4">
+                                <field colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/>
+                            </group>
+                            <group colspan="2" name="sale_total">
+
+                            </group>
+                        </group>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pharmacy_tree" model="ir.ui.view">
+        <field name="name">pharmacy_view_tree</field>
+        <field name="model">syscraft.clinic.pharmacy.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!--                <field name="NAME"/>-->
+                <field name="GENDER"/>
+                <field name="AGE"/>
+                <field name="PRESC_START"/>
+                <field name="STATUS_SYS" string="Prescription Status "
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'draft'"
+                       widget="badge"/>
+                <field name="PATIENT_PHONE" string="Patient details"/>
+                <field name="CONTACT_PHONE" string="Contact details"/>
+                <field name="PHYSICIAN_id"/>
+                <!--                <field name="LOCATION"/>-->
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_Pharmacy"
+              name="Pharmacy"
+              parent="menu_cms_root"
+              action="action_CMS_pharmacy"
+              sequence="10"
+    />
+
+</odoo>

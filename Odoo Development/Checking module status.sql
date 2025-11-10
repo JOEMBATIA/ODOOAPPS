@@ -1,0 +1,1 @@
+SELECT name, state FROM ir_module_module WHERE name = 'simple_sales_fields';

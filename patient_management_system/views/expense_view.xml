@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="action_patient_expense" model="ir.actions.act_window">
+        <field name="name">Patients Expense</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.expense</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="view_expense_tree" model="ir.ui.view">
+        <field name="name">patient.expense.tree</field>
+        <field name="model">patient.expense</field>
+        <field name="arch" type="xml">
+            <tree string="Patient Expenses">
+                <field name="patient_id"/>
+                <field name="date"/>
+                <field name="description"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+
+     <menuitem id="menu_Patients_expense"
+              name="Expenses"
+              parent="menu_patient_root"
+              action="action_patient_expense"
+              sequence="3"
+    />
+</odoo>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="volunteer_feature_snippet" name="volunteer feature snippet">
+        <section class="oe-structure container-field js_volunteer_dynamic_snippet">
+            <div class="row">
+                <section class="col-sm in-1">
+
+                </section>
+                <section class="col-sm in-2">
+                    <h2>VOLUNTEER TODAY</h2>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </template>
+
+    <template id="volunteer_form_snippet" name="Volunteer Form Snippet">
+        <section class="oe-structure container-field my-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header text-center">
+                                <h2>Volunteer Registration</h2>
+                            </div>
+                            <div class="card-body">
+                                <form t-attf-action="/volunteer/register" method="post" class="p-3">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="form-group mb-3">
+                                        <label for="identification">Passport Number/ Identification Number</label>
+                                        <input type="text" id="identification" name="identification"
+                                               class="form-control" required="'required"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                               required="'required"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" class="form-control"
+                                               required="'required"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control"
+                                               required="'required"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender" class="form-control">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" name="address" class="form-control"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="country_id">Country</label>
+                                        <select id="country_id" name="country_id" class="form-control">
+                                            <t t-foreach="request.env['res.country'].search([])" t-as="country">
+                                                <option t-att-value="country.id">
+                                                    <t t-esc="country.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="state_id">State</label>
+                                        <select id="state_id" name="state_id" class="form-control">
+                                            <t t-foreach="request.env['res.country.state'].search([])" t-as="state">
+                                                <option t-att-value="state.id">
+                                                    <t t-esc="state.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="project_ids">Program</label>
+                                        <select id="project_ids" name="project_ids" class="form-control">
+                                            <t t-foreach="request.env['project.project'].search([])" t-as="project">
+                                                <option t-att-value="project.id">
+                                                    <t t-esc="project.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="mode">How will you volunteer</label>
+                                        <select id="mode" name="mode" class="form-control" required="required">
+                                            <option value="onsite">Onsite</option>
+                                            <option value="remote">Remote/Online</option>
+                                            <option value="hybrid">Hybrid</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="message">Why do you want to volunteer?</label>
+                                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="volunteer_snippet" inherit_id="website.snippets" name="volunteer snippet">
+        <xpath expr="//div[@id='snippet_feature']/div[hasclass('o_panel_body')]" position="inside">
+<!--            <t t-snippet="volunteer_dynamic_snippet.volunteer_feature_snippet"></t>-->
+            <t t-snippet="volunteer_dynamic_snippet.volunteer_form_snippet"/>
+        </xpath>
+
+    </template>
+</odoo>

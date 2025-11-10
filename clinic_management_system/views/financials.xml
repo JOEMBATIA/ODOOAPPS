@@ -1,0 +1,18 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_CMS_financials" model="ir.actions.act_window">
+        <field name="name">Financials</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Financials"
+              name="Financials"
+              parent="menu_cms_root"
+              action="action_CMS_financials"
+              sequence="10"
+    />
+
+</odoo>

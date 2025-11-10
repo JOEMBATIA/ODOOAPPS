@@ -1,0 +1,18 @@
+<!-- These are the menus for a specific module in this case the cms module -->
+
+<odoo>
+    <record id="action_CMS_tools" model="ir.actions.act_window">
+        <field name="name">Tools</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tools.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Tools"
+              name="Tools"
+              parent="menu_cms_root"
+              action="action_CMS_tools"
+              sequence="10"
+    />
+
+</odoo>

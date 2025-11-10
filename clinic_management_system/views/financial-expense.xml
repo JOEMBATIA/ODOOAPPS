@@ -1,0 +1,99 @@
+<odoo>
+    <record id="action_CMS_financials_expense" model="ir.actions.act_window">
+        <field name="name">Expense</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.expense.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_expense_form" model="ir.ui.view">
+        <field name="name">expense_view_form</field>
+        <field name="model">syscraft.clinic.financials.expense.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Expense And Income">
+                <header>
+                    <header name="delete_lines" tyep="object" string="Delete" class="oe_highlight"/>
+
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Expense and Income Details</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="TYPE"/>
+                            <field name="HEADS"/>
+                            <field name="EXPENSE_DATE"/>
+                            <field name="EXPENSE_DUE_DATE"/>
+                        </group>
+                        <group>
+                            <field name="VOUCHER_DETAILS"/>
+                            <field name="VOUCHER_TYPE"/>
+                            <field name="AMOUNT"/>
+                            <field name="BELONGSTOCLINIC"/>
+                            <field name="PAYMENT_MODE"/>
+                            <field name="VENDOR_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Notes" name="Notes">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Additional Details" name="Additional Detail">
+                                <div>
+                                    <group>
+                                        <field name="SERVICE_id"/>
+                                        <field name="CATEGORY_id"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_expense_tree" model="ir.ui.view">
+        <field name="name">expense_view_tree</field>
+        <field name="model">syscraft.clinic.financials.expense.tbl</field>
+        <field name="arch" type="xml">
+            <tree name="Financials">
+                <field name="VOUCHER_DETAILS"/>
+                <field name="VOUCHER_TYPE"/>
+                <field name="AMOUNT"/>
+                <field name="BELONGSTOCLINIC"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_expense_search" model="ir.ui.view">
+        <field name="name">expense_view_search</field>
+        <field name="model">syscraft.clinic.financials.expense.tbl</field>
+        <field name="arch" type="xml">
+            <search string="Expenses">
+                <field name="HEADS"/>
+                <field name="BELONGSTOCLINIC"/>
+            </search>
+        </field>
+    </record>
+
+    <menuitem id="menu_Expense"
+              name="Expense"
+              parent="menu_Financials"
+              action="action_CMS_financials_expense"
+              sequence="11"
+    />
+</odoo>

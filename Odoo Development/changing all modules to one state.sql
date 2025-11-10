@@ -1,0 +1,1 @@
+UPDATE ir_module_module SET state = 'uninstalled' WHERE state IN ('to install', 'to upgrade', 'to remove');

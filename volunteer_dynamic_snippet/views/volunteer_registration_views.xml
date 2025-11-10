@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_volunteer_registration" model="ir.actions.act_window">
+        <field name="name">Volunteer Registrations</field>
+        <field name="res_model">volunteer.volunteer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_volunteer_registration_tree" model="ir.ui.view">
+        <field name="name">volunteer.registration.tree</field>
+        <field name="model">volunteer.volunteer</field>
+        <field name="arch" type="xml">
+            <tree string="Volunteer Registrations">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="message"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_volunteer_registration_form" model="ir.ui.view">
+        <field name="name">volunteer.registration.form</field>
+        <field name="model">volunteer.volunteer</field>
+        <field name="arch" type="xml">
+            <form string="Volunteer Registration">
+                <sheet>
+                    <group>
+                        <field name="image"/>
+                        <field name="identification"/>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
+                    <group>
+                        <field name="gender"/>
+                        <field name="country_id"/>
+                        <field name="state_id"/>
+                        <field name="address"/>
+                        <field name="status"/>
+                        <field name="project_ids"/>
+                        <field name="mode"/>
+                        <field name="message"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_volunteer_registration"
+              name="Volunteer Registrations"
+              sequence="10"
+              parent="base.menu_custom"
+              action="action_volunteer_registration"/>
+
+</odoo>

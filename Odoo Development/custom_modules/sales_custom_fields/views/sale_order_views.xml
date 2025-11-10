@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_description_column" model="ir.ui.view">
+        <field name="name">sale.order.form.description.column</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Target the product_template_id field and add description after it -->
+            <field name="product_template_id" position="after">
+                <field name="name" string="Description" optional="show" width="300"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,1 @@
+DELETE FROM ir_module_module_dependency WHERE module_id IN (SELECT id FROM ir_module_module WHERE name = 'simple_sales_fields');

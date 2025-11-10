@@ -1,0 +1,216 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+
+    <record id="action_CMS_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tbl</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">patient_view_form</field>
+        <field name="model">syscraft.clinic.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Patient">
+                <header>
+                    <!--<button name="action_edit" string="Edit" type="object" class="btn-primary"/>-->
+                    <field name="AVANE" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="scheduled,waiting,confirmed,engaged,check out,cancelled"
+                    />
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(medical_summary_action)d" type="action" icon="fa-medkit"
+                                string="Medical Summary"/>
+                        <button name="action_open_appoinment" type="object" icon="fa-book"
+                                string="past EMR"/>
+                        <button name="action_open_appoinment" type="object" icon="fa-credit-card"
+                                string="past Financial"/>
+                        <button name="action_open_appoinment" type="object" icon="fa-user-circle"
+                                string="past others"/>
+                        <!--<button name="action_open_appoinment" class="oe_stat_button" type="object"
+                                 icon="fa-calendar" >
+                            <div class="o_stat_info">
+                                <field name="APPT_COUNT"/>
+                                <span class="o_stat_text"> Appointments </span>
+                            </div>
+                        </button> -->
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Patient Details</b>
+                        </h1>
+                    </div>
+                    <div>
+                        <field name="IMAGE" widget="image" class="oe_avatar"/>
+                    </div>
+                    <group>
+                        <div class="oe_title">
+                            <b>
+                                <field name="REF_NO" placeholder="REF NO"/>
+                            </b>
+
+                        </div>
+                        <group>
+                            <field name="NAME"/>
+                            <field name="DOB" string="Year of birth "/>
+                            <field name="AGE"/>
+                            <field name="IsChild"/>
+                            <field name="GENDER" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="CONTACT"/>
+                            <field name="EMAIL"/>
+                            <field name="PHYSICIAN"/>
+                            <field name="resource_id" placeholder="RESOURCE"/>
+                        </group>
+                        <group>
+                            <field name="NETBALANCE"/>
+                            <field name="NEXTAPPT"/>
+                            <field name="APPT_FIN"/>
+                            <field name="APPT_DURATION" string="Appointment Duration(Minutes)"/>
+                            <!-- <field name="APPT_ID"/> -->
+                            <field name="CLINIC_NAME"/>
+                            <field name="AVANE" widget="badge"
+                                   decoration-primary="AVANE == 'check out'"
+                                   decoration-info="AVANE == 'engaged'"
+                                   decoration-success="AVANE == 'confirmed'"
+                                   decoration-danger="AVANE == 'cancelled'"
+                                   decoration-warning="AVANE == 'waiting'"
+                            />
+                        </group>
+                        <notebook>
+                            <page string="Categories">
+                                <field name="CATEGORY_NAME" widget="section_and_note_one2many" mode="tree,kanban">
+                                    <tree editable="bottom">
+                                        <field name="CATEGORY_NAME"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Attachments">
+                                <div>
+                                    <group>
+                                        <field name="file_category"/>
+                                        <field name="attachment"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Chief Complaints">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Vitals">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Treatment">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Investigations">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Assesment">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Lab Results">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="My Notes">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Recall">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_patient_tree" model="ir.ui.view">
+        <field name="name">patient_view_tree</field>
+        <field name="model">syscraft.clinic.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="NAME"/>
+                <field name="EMAIL"/>
+                <field name="CATEGORY_NAME"/>
+                <field name="GENDER"/>
+                <field name="AGE"/>
+                <field name="CONTACT"/>
+                <field name="NETBALANCE"
+                       decoration-success="NETBALANCE > 1000"
+                       decoration-warning="NETBALANCE == 1000"
+                />
+                <field name="NEXTAPPT"/>
+                <field name="AVANE" widget="badge"
+                       decoration-primary="AVANE == 'check out'"
+                       decoration-info="AVANE == 'engaged'"
+                       decoration-success="AVANE == 'confirmed'"
+                       decoration-danger="AVANE == 'cancelled'"
+                       decoration-warning="AVANE == 'waiting'"
+                       string="Appointment Status "
+                />
+                <field name="CLINIC_NAME"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_patient_search" model="ir.ui.view">
+        <field name="name">patient_view_search</field>
+        <field name="model">syscraft.clinic.tbl</field>
+        <field name="arch" type="xml">
+            <search string="Patients">
+                <field name="NAME"/>
+                <field name="CATEGORY_NAME"/>
+                <field name="CLINIC_NAME"/>
+            </search>
+        </field>
+    </record>
+
+    <menuitem id="menu_Patients"
+              name="Patients"
+              parent="menu_cms_root"
+              action="action_CMS_patient"
+              sequence="10"
+    />
+
+</odoo>

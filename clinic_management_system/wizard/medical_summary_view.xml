@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_medical_summary_form" model="ir.ui.view">
+        <field name="name">medical_summary_form</field>
+        <field name="model">syscraft.medical.summary</field>
+        <field name="arch" type="xml">
+            <form string="Medical Summary">
+                <notebook>
+                    <page string="Snapshot, Allergy and other Details">
+                        <group>
+                            <field name="pregnancy"/>
+                            <field name="total_visits"/>
+                            <field name="points"/>
+                            <field name="Due"/>
+                            <field name="Billed"/>
+                            <field name="next_appt_id"/>
+                            <field name="category"/>
+                            <field name="comments"/>
+                        </group>
+                        <group>
+                            <field name="allergy"/>
+                            <field name="visits"/>
+                            <field name="family_members"/>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Services Summary">
+                        <group>
+
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Current RX">
+                        <group>
+                        </group>
+                    </page>
+                    <page string="Past RX">
+                        <group>
+                        </group>
+                    </page>
+                    <page string="Discontinued RX">
+                        <group>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Medical History">
+                        <group>
+
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Notes">
+                        <group>
+
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="medical_summary_action" model="ir.actions.act_window">
+        <field name="name">Medical Summary</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.medical.summary</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_medical_summary_form"/>
+        <field name="target">new</field>
+        <!--        <field name="context">{-->
+        <!--            'dialog_size' : 'medium',-->
+        <!--            }-->
+        <!--        </field>-->
+    </record>
+
+</odoo>

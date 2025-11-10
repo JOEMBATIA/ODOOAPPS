@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="volunteer_thanks" model="website.page">
+
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/volunteer-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">volunteer_dynamic_snippet.volunteer_thanks</field>
+        <field name="arch" type="xml">
+            <t name="thank_you_page" t-name="volunteer_dynamic_snippet.volunteer_thanks">
+                <t t-call="website.layout">
+                    <div class="container my-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center alert alert-success" role="status">
+                                <h2>Thank You for Registering as a Volunteer!</h2>
+                                <p>We appreciate your interest in volunteering. We will get in touch with you soon.</p>
+                                <a href="/" class="btn btn-primary">Go to Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

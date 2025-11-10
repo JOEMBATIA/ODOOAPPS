@@ -1,0 +1,18 @@
+<!-- These are the menus for a specific module in this case the SysCMS module -->
+
+<odoo>
+    <record id="action_CMS_dropdowns" model="ir.actions.act_window">
+        <field name="name">Dropdowns</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Tools_Dropdowns"
+              name="Dropdowns"
+              parent="menu_Tools"
+              action="action_CMS_dropdowns"
+              sequence="10"
+    />
+
+</odoo>

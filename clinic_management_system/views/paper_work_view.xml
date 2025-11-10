@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <record id="action_CMS_paper_work" model="ir.actions.act_window">
+            <field name="name">Paper Work</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">syscraft.paper.work.tbl</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record id="view_paper_work_tree" model="ir.ui.view">
+            <field name="name">view_paper_work_tree</field>
+            <field name="model">syscraft.paper.work.tbl</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="paper_work_details"/>
+                    <field name="patient_details"/>
+                    <field name="created_and_clinic"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_paper_work_form" model="ir.ui.view">
+            <field name="name">view_paper_work_form</field>
+            <field name="model">syscraft.paper.work.tbl</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <b>Patient Paper Work</b>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="date"/>
+                            <field name="patient_name_id"/>
+                            <field name="paper_work_to_add"/>
+                        </group>
+                        <group>
+                            <field name="patient_phone"/>
+                            <field name="patient_email"/>
+                        </group>
+                        <group>
+                            <field name="created_by"/>
+                            <field name="clinic"/>
+                            <field name="doc_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_Patient_Paper_Work"
+                  name="Patient Paper Work"
+                  parent="menu_Documents"
+                  action="action_CMS_paper_work"
+                  sequence="10"
+        />
+    </data>
+</odoo>

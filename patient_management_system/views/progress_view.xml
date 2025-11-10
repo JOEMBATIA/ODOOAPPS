@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="action_patient_progress" model="ir.actions.act_window">
+        <field name="name">Patients Progress</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.progress</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="view_progress_tree" model="ir.ui.view">
+        <field name="name">patient.progress.tree</field>
+        <field name="model">patient.progress</field>
+        <field name="arch" type="xml">
+            <tree string="Patient Progress">
+                <field name="patient_id"/>
+                <field name="date"/>
+                <field name="description"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_patients_progress"
+              name="Progress"
+              parent="menu_patient_root"
+              action="action_patient_progress"
+              sequence="2"
+    />
+</odoo>

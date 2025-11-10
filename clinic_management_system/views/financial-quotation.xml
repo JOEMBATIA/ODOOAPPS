@@ -1,0 +1,99 @@
+<odoo>
+
+    <record id="action_CMS_financials_quotation" model="ir.actions.act_window">
+        <field name="name">Quotation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.quotation.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">quotation_view_tree</field>
+        <field name="model">syscraft.clinic.financials.quotation.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="PATIENT_id"/>
+                <field name="GENDER"/>
+                <field name="PHONE"/>
+                <field name="EMAIL"/>
+                <field name="NETBALANCE"
+                       decoration-success="NETBALANCE > 1000"
+                       decoration-warning="NETBALANCE == 1000"
+                />
+                <field name="BELONGSTOCLINIC"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_quotation_form" model="ir.ui.view">
+        <field name="name">quotation_view_form</field>
+        <field name="model">syscraft.clinic.financials.quotation.tbl</field>
+        <field name="arch" type="xml">
+            <form string="Quotation" class="o_financials">
+                <header>
+                    <button name="%(quotation_report)d" type="action" string="Create Invoice"
+                            class="btn-primary"/>
+                    <button name="action_send_email" type="object" string="Send Email"
+                            class="btn-primary"/>
+                    <field name="PAYMENT_STATE" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="unpaid,paid"
+                           default="unpaid"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="NEW" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group name="quotation_header">
+                        <group name="partner_details">
+                            <field name="PATIENT_id" widget="res_partner_many2one"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   options="{&quot;always_reload&quot;: True}"/>
+                        </group>
+                        <group name="partner_details">
+                            <field name="NAME"/>
+                            <field name="PAYMENT_MODE"/>
+                            <field name="QUANTITY" string="Prescribed Quantity "/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Quatation Items" string="Quatation Items">
+                            <field name="quotation_lines">
+                                <tree editable="bottom">
+                                    <field name="item_id"/>
+                                    <field name="price"/>
+                                    <field name="quantity"/>
+                                    <field name="discount"/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group col="6" class="mt-2 mt-md-0">
+                        <group colspan="4">
+                            <field colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/>
+                        </group>
+                        <group colspan="2" name="sale_total">
+                            <field name="TOTAL" string="Total(Ksh) " placeholder="Sub Total" nolabel="1" colspan="2"
+                                   readonly="0"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+
+        </field>
+
+    </record>
+
+    <menuitem id="menu_Quotation"
+              name="Quotation"
+              parent="menu_Financials"
+              action="action_CMS_financials_quotation"
+              sequence="10"
+    />
+</odoo>

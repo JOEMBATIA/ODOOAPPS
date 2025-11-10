@@ -1,0 +1,105 @@
+<odoo>
+    <record id="action_CMS_financials_bill" model="ir.actions.act_window">
+        <field name="name">Bill</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">syscraft.clinic.financials.tbl</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_bill_form" model="ir.ui.view">
+        <field name="name">bill_view_form</field>
+        <field name="model">syscraft.clinic.financials.tbl</field>
+        <field name="arch" type="xml">
+            <form String="Bill">
+                <header>
+                    <field name="STATE" widget="statusbar" options="{'clickable' : '1'}"
+                           statusbar_visible="draft,done,confirm"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_patient" type="object" icon="fa-user-circle"
+                                string="Patient Summary"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <b>Bill</b>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="PATIENT_id"/>
+                            <field name="PHONE"/>
+                            <field name="EMAIL"/>
+                        </group>
+                        <group>
+                            <field name="START_PERIOD"/>
+                            <field name="END_PERIOD"/>
+                            <field name="NETBALANCE"/>
+                            <field name="BELONGSTOCLINIC"/>
+                            <field name="GENDER" widget="radio"/>
+                        </group>
+                        <notebook>
+                            <page string="Bill Items">
+                                <field name="bill_items_ids" widget="section_and_note_one2many" mode="tree,kanban">
+                                    <tree editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="price"/>
+                                        <field name="quantity"/>
+                                        <field name="discount"/>
+                                        <field name="total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Notes" name="Notes">
+                                <div>
+                                    <group>
+                                        <field name="NOTES"/>
+                                    </group>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bill_tree" model="ir.ui.view">
+        <field name="name">bill_view_tree</field>
+        <field name="model">syscraft.clinic.financials.tbl</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="PATIENT_id"/>
+                <field name="GENDER"/>
+                <field name="PHONE"/>
+                <field name="NETBALANCE"/>
+                <field name="BELONGSTOCLINIC"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bill_search" model="ir.ui.view">
+        <field name="name">bill_view_search</field>
+        <field name="model">syscraft.clinic.financials.tbl</field>
+        <field name="arch" type="xml">
+            <search string="PATIENT_id">
+                <field name="START_PERIOD"/>
+                <field name="END_PERIOD"/>
+                <field name="BELONGSTOCLINIC"/>
+            </search>
+        </field>
+    </record>
+
+    <menuitem id="menu_Bill"
+              name="Bill"
+              parent="menu_Financials"
+              action="action_CMS_financials_bill"
+              sequence="10"
+    />
+
+</odoo>

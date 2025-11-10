@@ -1,0 +1,101 @@
+<odoo>
+    <template id="report_invoice_document">
+        <t t-call="web.external_layout">
+            <!-- Header Section -->
+            <div class="header">
+                <h2>Invoice</h2>
+                <p>Invoice Number:
+                    <span t-field="o.number"/>
+                </p>
+            </div>
+
+            <!-- Company Information Section -->
+            <div class="company-info">
+                <h3>Company Information</h3>
+                <p>Company:
+                    <span t-field="o.company_id.name"/>
+                </p>
+                <p>Address:
+                    <span t-field="o.company_id.partner_id.street"/>
+                </p>
+                <!-- Add other company fields as needed -->
+            </div>
+
+            <!-- Customer Information Section -->
+            <div class="customer-info">
+                <h3>Customer Information</h3>
+                <p>Customer:
+                    <span t-field="o.partner_id.name"/>
+                </p>
+                <p>Address:
+                    <span t-field="o.partner_id.street"/>
+                </p>
+                <!-- Add other customer fields as needed -->
+            </div>
+
+            <!-- Invoice Details Section -->
+            <div class="invoice-details">
+                <h3>Invoice Details</h3>
+                <p>Invoice Date:
+                    <span t-field="o.date_invoice"/>
+                </p>
+                <p>Due Date:
+                    <span t-field="o.date_due"/>
+                </p>
+                <p>Invoice Status:
+                    <span t-field="o.state"/>
+                </p>
+                <!-- Add other invoice fields as needed -->
+            </div>
+
+            <!-- Invoice Lines Section -->
+            <div class="invoice-lines">
+                <h3>Invoice Lines</h3>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.invoice_line_ids" t-as="line">
+                            <td>
+                                <span t-field="line.product_id.name"/>
+                            </td>
+                            <td>
+                                <span t-field="line.quantity"/>
+                            </td>
+                            <td>
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td>
+                                <span t-field="line.price_subtotal"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Total Amount Section -->
+            <div class="total-amount">
+                <p>Total Amount:
+                    <span t-field="o.amount_total"/>
+                </p>
+            </div>
+        </t>
+    </template>
+
+<!--    <record id="invoice_report" model="ir.actions.report">-->
+<!--        <field name="name">Quotation Invoice</field>-->
+<!--        <field name="model">custom.invoice</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">clinic_management_system.report_invoice_document</field>-->
+<!--        <field name="report_file">clinic_management_system.report_invoice_document</field>-->
+<!--        <field name="print_report_name">'Quotation Invoice'</field>-->
+<!--        <field name="binding_model_id" ref="clinic_management_system.view_custom_invoice_form"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+</odoo>

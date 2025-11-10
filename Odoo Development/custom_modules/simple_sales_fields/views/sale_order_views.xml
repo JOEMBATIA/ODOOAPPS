@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_description_column" model="ir.ui.view">
+        <field name="name">sale.order.form.description.column</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Test if view is applied -->
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-success" style="margin: 10px;">
+                    <strong>✓ Product Description Module is Active</strong>
+                </div>
+            </xpath>
+
+            <!-- Add PRODUCT DESCRIPTION column to the list view -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="after">
+                <field name="product_description" string="Product Description" width="350" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

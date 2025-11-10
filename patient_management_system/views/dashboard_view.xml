@@ -1,0 +1,87 @@
+<odoo>
+    <!-- Dashboard Menu Item -->
+    <menuitem id="menu_dashboard"
+              name="Patient Dashboard"
+              parent="menu_patient_root"
+              sequence="5"
+    />
+
+    <!-- Dashboard View -->
+    <record id="view_patient_age_distribution_graph" model="ir.ui.view">
+        <field name="name">patient.age.distribution.graph</field>
+        <field name="model">patient.management</field>
+        <field name="arch" type="xml">
+            <graph string="Patient Age Distribution" type="bar">
+                <field name="age" type="dimension"/>
+                <field name="patient_id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_gender_distribution_graph" model="ir.ui.view">
+        <field name="name">gender.distribution.graph</field>
+        <field name="model">patient.management</field>
+        <field name="arch" type="xml">
+            <graph string="Gender Distribution" type="pie">
+                <field name="gender" type="dimension"/>
+                <field name="patient_id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_patient_progress_over_time_graph" model="ir.ui.view">
+        <field name="name">patient.progress.over.time.graph</field>
+        <field name="model">patient.management</field>
+        <field name="arch" type="xml">
+            <graph string="Patient Progress Over Time" type="line">
+                <field name="date" type="dimension"/>
+                <field name="progress" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+           <!-- Actions -->
+    <record id="action_patient_age_distribution" model="ir.actions.act_window">
+        <field name="name">Patient Age Distribution</field>
+        <field name="res_model">patient.management</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_patient_age_distribution_graph"/>
+    </record>
+
+    <record id="action_gender_distribution" model="ir.actions.act_window">
+        <field name="name">Gender Distribution</field>
+        <field name="res_model">patient.management</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_gender_distribution_graph"/>
+    </record>
+
+    <record id="action_patient_progress" model="ir.actions.act_window">
+        <field name="name">Patient Progress Over Time</field>
+        <field name="res_model">patient.management</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_patient_progress_over_time_graph"/>
+    </record>
+
+
+    <!-- Menu Items -->
+    <menuitem id="menu_patient_age_distribution"
+              name="Patient Age Distribution"
+              parent="menu_patient_root"
+              action="action_patient_age_distribution"
+              sequence="10"
+    />
+
+    <menuitem id="menu_gender_distribution"
+              name="Gender Distribution"
+              parent="menu_patient_root"
+              action="action_gender_distribution"
+              sequence="11"
+    />
+
+    <menuitem id="menu_patient_progress"
+              name="Patient Progress Over Time"
+              parent="menu_patient_root"
+              action="action_patient_progress"
+              sequence="12"
+    />
+</odoo>

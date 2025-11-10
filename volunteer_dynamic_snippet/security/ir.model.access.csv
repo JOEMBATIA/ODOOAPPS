@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+volunteer_dynamic_snippet.access_volunteer_volunteer_admin,access_volunteer_volunteer_admin,volunteer_dynamic_snippet.model_volunteer_volunteer,base.group_user,1,1,1,1
+volunteer_dynamic_snippet.access_volunteer_volunteer_user,access_volunteer_volunteer_user,volunteer_dynamic_snippet.model_volunteer_volunteer,base.group_user,1,0,0,0

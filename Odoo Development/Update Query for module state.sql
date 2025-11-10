@@ -1,0 +1,1 @@
+UPDATE ir_module_module SET state = 'uninstalled' WHERE name = 'simple_sales_fields';

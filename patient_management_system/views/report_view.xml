@@ -1,0 +1,63 @@
+<odoo>
+    <!-- Report Declaration -->
+    <report
+            id="patient_report"
+            model="patient.management"
+            string="Patient Report"
+            report_type="qweb-pdf"
+            name="patient_management_system.patient_report_template"
+            file="patient_management_system.patient_report_template"
+    />
+
+    <!-- Report Action -->
+    <record id="patient_management_report_action" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">patient.management</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">patient_management_system.patient_report_template</field>
+        <field name="binding_model_id" ref="patient.management"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="patient_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h2>Patient Report -
+                    <t t-esc="doc.name"/>
+                </h2>
+                <p>
+                    <strong>Patient ID:</strong>
+                    <t t-esc="doc.patient_id"/>
+                </p>
+                <p>
+                    <strong>Age:</strong>
+                    <t t-esc="doc.age"/>
+                </p>
+                <p>
+                    <strong>Gender:</strong>
+                    <t t-esc="doc.gender"/>
+                </p>
+                <p>
+                    <strong>Hospital:</strong>
+                    <t t-esc="doc.hospital"/>
+                </p>
+                <p>
+                    <strong>Contact:</strong>
+                    <t t-esc="doc.contact_number"/>
+                </p>
+            </t>
+            <t t-if="not docs">
+                <p>No records found.</p>
+            </t>
+        </t>
+    </template>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_patients_report"
+              name="Patient Report"
+              parent="menu_patient_root"
+              action="patient_management_report_action"
+              sequence="4"
+    />
+</odoo>

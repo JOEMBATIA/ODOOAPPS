@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+patient_management_system.access_patient_management,access_patient_management,patient_management_system.model_patient_management,base.group_user,1,1,1,1
+patient_management_system.access_patient_expense,access_patient_expense,patient_management_system.model_patient_expense,base.group_user,1,1,1,1
+patient_management_system.access_patient_progress,access_patient_progress,patient_management_system.model_patient_progress,base.group_user,1,1,1,1

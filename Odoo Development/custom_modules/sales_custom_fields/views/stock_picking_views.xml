@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Product Description to Delivery Lines -->
+    <record id="view_picking_form_product_description" model="ir.ui.view">
+        <field name="name">stock.picking.form.product.description</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Product Description column after Product column -->
+            <xpath expr="//field[@name='move_ids']/tree/field[@name='product_id']" position="after">
+                <field name="product_description" string="Product Description" width="300" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

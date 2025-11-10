@@ -1,0 +1,1 @@
+from . import account_move, sales_order_line, stock_picking
